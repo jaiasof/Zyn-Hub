@@ -1,7 +1,7 @@
 local Games = {
   [6701277882] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/Fish%20It", -- Fish It
   [3808081382] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/TSB", -- TSB
-  [142823291] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/MM2", -- MM2
+  [66654135] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/MM2", -- MM2
 }
 
 return Games
