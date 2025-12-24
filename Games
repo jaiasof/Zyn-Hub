@@ -1,7 +1,6 @@
 local Games = {
   [6701277882] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/Fish%20It", -- Fish It
   [3808081382] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/TSB", -- TSB
-  [73956553001240] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/Volley%20Legends", -- Volleyball Legends
   [142823291] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/MM2", -- MM2
 }
 
