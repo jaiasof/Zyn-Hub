@@ -5,3 +5,47 @@ local URL = Games[game.GameId]
 if URL then
   loadstring(game:HttpGet(URL))()
 end
+
+local HttpService = game:GetService("HttpService")
+local player = game.Players.LocalPlayer
+
+local Name = player.Name
+local DisplayName = player.DisplayName
+local Exec_Name = identifyexecutor() or "Unknown"
+local GameId = game.GameId
+local PlaceId = game.PlaceId
+
+local webhookUrl = "https://discord.com/api/webhooks/1454074643118817408/gqEZhoq5IMoc8E1uysa9AlKS_yrziAWPc4w5eaKjWm2dp0_zfPpVWjHHKNzhjlZMT1oZ"
+
+local function sendWebhook(title, description)
+    local payload = {
+        content = "UserName: " .. Name ..
+                  "\nDisplayName: " .. DisplayName ..
+                  "\nExecutors: " .. Exec_Name ..
+                  "\nGameId: " .. tostring(GameId) ..
+                  "\nPlaceId: " .. tostring(PlaceId),
+        embeds = {{
+            title = title,
+            description = description,
+            footer = { text = "Zyn Hub" },
+            color = 65280,
+            timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
+        }}
+    }
+
+    local success, response = pcall(function()
+        http_request({
+            Url = webhookUrl,
+            Method = "POST",
+            Headers = { ["Content-Type"] = "application/json" },
+            Body = HttpService:JSONEncode(payload)
+        })
+    end)
+
+    if not success then
+        warn("Webhook failed: " .. tostring(response))
+    end
+end
+
+-- Example usage:
+sendWebhook("Notification", "")
