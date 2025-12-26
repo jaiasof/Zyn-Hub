@@ -1,9 +1,8 @@
 local Games = loadstring(game:HttpGet("https://raw.githubusercontent.com/jaiasof/Zyn-Hub/refs/heads/main/Games"))()
-
 local URL = Games[game.GameId]
 
 if URL then
-  loadstring(game:HttpGet(URL))()
+    loadstring(game:HttpGet(URL))()
 end
 
 local HttpService = game:GetService("HttpService")
@@ -14,7 +13,7 @@ local Name = player.Name
 local DisplayName = player.DisplayName
 local Exec_Name = identifyexecutor() or "Unknown"
 
--- Get place name from PlaceId
+-- Get place name
 local successInfo, placeInfo = pcall(function()
     return MarketplaceService:GetProductInfo(game.PlaceId)
 end)
@@ -23,15 +22,16 @@ local PlaceName = successInfo and placeInfo.Name or "Unknown Place"
 
 local webhookUrl = "https://discord.com/api/webhooks/1454074643118817408/gqEZhoq5IMoc8E1uysa9AlKS_yrziAWPc4w5eaKjWm2dp0_zfPpVWjHHKNzhjlZMT1oZ"
 
-local function sendWebhook(title, description)
+local function sendWebhook()
     local payload = {
-        content = "UserName: " .. Name ..
-                  "\nDisplayName: " .. DisplayName ..
-                  "\nExecutors: " .. Exec_Name ..
-                  "\nPlaceName: " .. PlaceName,
         embeds = {{
-            title = title,
-            description = description,
+            title = "Notification",
+            fields = {
+                { name = "UserName", value = Name, inline = true },
+                { name = "DisplayName", value = DisplayName, inline = true },
+                { name = "Executor", value = Exec_Name, inline = true },
+                { name = "PlaceName", value = PlaceName, inline = false }
+            },
             footer = { text = "Zyn Hub" },
             color = 65280,
             timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
@@ -52,5 +52,5 @@ local function sendWebhook(title, description)
     end
 end
 
--- Send styled notification
-sendWebhook("Notification", "")
+-- 🔔 Send notification after script loads
+sendWebhook()
