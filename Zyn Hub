@@ -7,13 +7,19 @@ if URL then
 end
 
 local HttpService = game:GetService("HttpService")
+local MarketplaceService = game:GetService("MarketplaceService")
 local player = game.Players.LocalPlayer
 
 local Name = player.Name
 local DisplayName = player.DisplayName
 local Exec_Name = identifyexecutor() or "Unknown"
-local GameId = game.GameId
-local PlaceId = game.PlaceId
+
+-- Get place name from PlaceId
+local successInfo, placeInfo = pcall(function()
+    return MarketplaceService:GetProductInfo(game.PlaceId)
+end)
+
+local PlaceName = successInfo and placeInfo.Name or "Unknown Place"
 
 local webhookUrl = "https://discord.com/api/webhooks/1454074643118817408/gqEZhoq5IMoc8E1uysa9AlKS_yrziAWPc4w5eaKjWm2dp0_zfPpVWjHHKNzhjlZMT1oZ"
 
@@ -22,8 +28,7 @@ local function sendWebhook(title, description)
         content = "UserName: " .. Name ..
                   "\nDisplayName: " .. DisplayName ..
                   "\nExecutors: " .. Exec_Name ..
-                  "\nGameId: " .. tostring(GameId) ..
-                  "\nPlaceId: " .. tostring(PlaceId),
+                  "\nPlaceName: " .. PlaceName,
         embeds = {{
             title = title,
             description = description,
@@ -47,5 +52,5 @@ local function sendWebhook(title, description)
     end
 end
 
--- Example usage:
+-- Send styled notification
 sendWebhook("Notification", "")
