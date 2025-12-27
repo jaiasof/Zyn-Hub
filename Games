@@ -4,6 +4,7 @@ local Games = {
   [66654135] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/MM2", -- MM2
   [6331902150] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/Forsaken", -- Forsaken
   [7671049560] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/The%20Forge", -- The Forge
+  [994732206] = "https://raw.githubusercontent.com/jaiasof/Game-List/refs/heads/main/bloxfruit", -- Blox Fruit
 }
 
 return Games
